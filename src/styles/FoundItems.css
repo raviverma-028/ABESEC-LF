@@ -1,0 +1,699 @@
+/* ========================================
+   FOUND ITEMS PAGE
+======================================== */
+
+.found-items-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+/* ========================================
+   HEADER
+======================================== */
+
+.found-header {
+  padding: 65px 25px;
+  background: linear-gradient(135deg, #ecfdf5, #ffffff);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.found-header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.found-header .page-label {
+  display: inline-block;
+  margin-bottom: 12px;
+
+  color: #059669;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.found-header h1 {
+  margin: 0 0 12px;
+
+  color: #111827;
+  font-size: clamp(32px, 5vw, 50px);
+  line-height: 1.15;
+  font-weight: 800;
+}
+
+.found-header p {
+  margin: 0;
+
+  color: #64748b;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.report-found-btn {
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 13px 20px;
+
+  color: #ffffff;
+  background: #059669;
+
+  border: 1px solid #059669;
+  border-radius: 9px;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  transition: all 0.3s ease;
+}
+
+.report-found-btn:hover {
+  background: #047857;
+  border-color: #047857;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 20px rgba(5, 150, 105, 0.2);
+}
+
+/* ========================================
+   SEARCH & FILTER
+======================================== */
+
+.found-filter-section {
+  padding: 25px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.found-filter-container {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 220px 220px;
+  gap: 15px;
+}
+
+.found-search-box {
+  min-height: 46px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 14px;
+
+  background: #ffffff;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+
+  transition: 0.2s ease;
+}
+
+.found-search-box:focus-within {
+  border-color: #059669;
+
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.found-search-box span {
+  margin-right: 10px;
+  font-size: 17px;
+}
+
+.found-search-box input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+
+  color: #1e293b;
+
+  font-size: 14px;
+}
+
+.found-search-box input::placeholder {
+  color: #94a3b8;
+}
+
+.found-filter-container select {
+  width: 100%;
+  min-height: 46px;
+
+  padding: 0 12px;
+
+  color: #334155;
+  background: #ffffff;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+
+  outline: none;
+
+  cursor: pointer;
+
+  font-size: 14px;
+}
+
+.found-filter-container select:focus {
+  border-color: #059669;
+
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+/* ========================================
+   ITEMS SECTION
+======================================== */
+
+.found-items-section {
+  padding: 60px 25px;
+}
+
+.found-items-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.found-items-top {
+  margin-bottom: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.found-items-top h2 {
+  margin: 0 0 5px;
+
+  color: #111827;
+  font-size: 28px;
+}
+
+.found-items-top p {
+  margin: 0;
+
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* ========================================
+   ITEMS GRID
+======================================== */
+
+.found-items-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 25px;
+}
+
+/* ========================================
+   ITEM CARD
+======================================== */
+
+.found-item-card {
+  overflow: hidden;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 15px;
+
+  box-shadow: 0 5px 20px rgba(15, 23, 42, 0.05);
+
+  transition: all 0.3s ease;
+}
+
+.found-item-card:hover {
+  transform: translateY(-5px);
+
+  border-color: #a7f3d0;
+
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.1);
+}
+
+/* ========================================
+   ITEM IMAGE
+======================================== */
+
+.found-item-image {
+  position: relative;
+
+  height: 190px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(135deg, #ecfdf5, #f8fafc);
+
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.found-item-icon {
+  font-size: 75px;
+}
+
+.found-status {
+  position: absolute;
+
+  top: 15px;
+  right: 15px;
+
+  padding: 5px 9px;
+
+  color: #047857;
+  background: #d1fae5;
+
+  border-radius: 6px;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* ========================================
+   ITEM CONTENT
+======================================== */
+
+.found-item-content {
+  padding: 22px;
+}
+
+.found-item-category {
+  margin-bottom: 8px;
+
+  color: #059669;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.found-item-content h3 {
+  margin: 0 0 10px;
+
+  color: #111827;
+  font-size: 20px;
+}
+
+.found-item-description {
+  min-height: 45px;
+
+  margin: 0 0 18px;
+
+  color: #64748b;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ========================================
+   ITEM INFO
+======================================== */
+
+.found-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  padding: 15px 0;
+
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+
+  color: #475569;
+
+  font-size: 13px;
+}
+
+/* ========================================
+   ITEM FOOTER
+======================================== */
+
+.found-item-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  padding-top: 17px;
+}
+
+.found-reported-by {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.claim-btn {
+  padding: 8px 13px;
+
+  color: #047857;
+  background: #ecfdf5;
+
+  border: 1px solid #a7f3d0;
+  border-radius: 7px;
+
+  cursor: pointer;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  transition: all 0.2s ease;
+}
+
+.claim-btn:hover {
+  color: #ffffff;
+  background: #059669;
+  border-color: #059669;
+}
+
+/* ========================================
+   NO ITEMS
+======================================== */
+
+.no-found-items {
+  padding: 70px 20px;
+
+  text-align: center;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 15px;
+}
+
+.no-found-icon {
+  margin-bottom: 15px;
+  font-size: 50px;
+}
+
+.no-found-items h3 {
+  margin: 0 0 8px;
+
+  color: #1e293b;
+  font-size: 22px;
+}
+
+.no-found-items p {
+  margin: 0 0 20px;
+
+  color: #64748b;
+  font-size: 14px;
+}
+
+.no-found-items button {
+  padding: 10px 18px;
+
+  color: #ffffff;
+  background: #059669;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.no-found-items button:hover {
+  background: #047857;
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1000px) {
+  .found-items-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .found-filter-container {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .found-search-box {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 700px) {
+  .found-header {
+    padding: 50px 20px;
+  }
+
+  .found-header-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .report-found-btn {
+    width: 100%;
+  }
+
+  .found-filter-section {
+    padding: 20px;
+  }
+
+  .found-filter-container {
+    grid-template-columns: 1fr;
+  }
+
+  .found-search-box {
+    grid-column: auto;
+  }
+
+  .found-items-section {
+    padding: 40px 20px;
+  }
+
+  .found-items-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media (max-width: 400px) {
+  .found-header h1 {
+    font-size: 30px;
+  }
+
+  .found-header p {
+    font-size: 14px;
+  }
+
+  .found-filter-section {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .found-items-section {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .found-item-content {
+    padding: 18px;
+  }
+}
+
+.recover-found-btn {
+  padding: 9px 12px;
+
+  color: #047857;
+  background: #ecfdf5;
+
+  border: 1px solid #a7f3d0;
+  border-radius: 7px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.recover-found-btn:hover {
+  color: #ffffff;
+  background: #059669;
+  border-color: #059669;
+}
+
+/* ==========================================
+DELETE BUTTON
+========================================== */
+
+.delete-found-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.delete-found-btn:hover {
+  background: #b91c1c;
+}
+
+
+/* ==========================================
+RECOVER BUTTON
+========================================== */
+
+.recover-found-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #16a34a;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.recover-found-btn:hover {
+  background: #15803d;
+}
+
+
+/* ==========================================
+FOUND STATUS
+========================================== */
+
+.found-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 5px 10px;
+
+  border-radius: 30px;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+
+  color: #ffffff;
+  background: #2563eb;
+}
+
+
+/* ==========================================
+RECOVERED STATUS
+========================================== */
+
+.found-status.recovered {
+  background: #16a34a;
+}
+
+
+/* ==========================================
+ACTION BUTTON WRAPPER
+========================================== */
+
+.found-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+
+/* ==========================================
+MOBILE
+========================================== */
+
+@media (max-width:600px){
+
+  .found-actions{
+    flex-direction:column;
+  }
+
+  .recover-found-btn,
+  .delete-found-btn{
+    width:100%;
+  }
+
+}
+
+/* ===============================
+DELETE BUTTON
+=============================== */
+
+.delete-found-btn{
+    background:#ef4444;
+    color:#fff;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+}
+
+.delete-found-btn:hover{
+    background:#dc2626;
+}
+
+
+/* ===============================
+RECOVER BUTTON
+=============================== */
+
+.recover-found-btn{
+    background:#10b981;
+    color:#fff;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+}
+
+.recover-found-btn:hover{
+    background:#059669;
+}
+
+
+/* ===============================
+RECOVERED STATUS
+=============================== */
+
+.found-status.recovered{
+    background:#22c55e;
+    color:white;
+}

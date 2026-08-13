@@ -1,0 +1,106 @@
+.item-card{
+background:#fff;
+border:1px solid #e5e7eb;
+border-radius:14px;
+padding:22px;
+box-shadow:0 5px 15px rgba(0,0,0,.05);
+transition:.3s;
+}
+
+.item-card:hover{
+transform:translateY(-5px);
+}
+
+.item-card-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:15px;
+}
+
+.item-icon{
+font-size:40px;
+}
+
+.status{
+padding:6px 10px;
+border-radius:8px;
+font-size:11px;
+font-weight:700;
+}
+
+.status.lost{
+background:#fee2e2;
+color:#dc2626;
+}
+
+.status.found{
+background:#d1fae5;
+color:#047857;
+}
+
+.item-category{
+display:inline-block;
+margin:10px 0;
+font-size:12px;
+font-weight:700;
+color:#2563eb;
+}
+
+.item-description{
+color:#64748b;
+font-size:14px;
+margin:15px 0;
+}
+
+.item-details{
+margin:15px 0;
+}
+
+.item-details p{
+margin:5px 0;
+font-size:13px;
+}
+
+.item-user{
+display:flex;
+align-items:center;
+gap:12px;
+margin:18px 0;
+}
+
+.avatar{
+width:42px;
+height:42px;
+border-radius:50%;
+background:#2563eb;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+}
+
+.item-actions{
+display:flex;
+gap:10px;
+}
+
+.primary-btn{
+flex:1;
+padding:10px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+.delete-btn{
+padding:10px 16px;
+background:#ef4444;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}

@@ -1,0 +1,420 @@
+/* ========================================
+   ADD FOUND ITEM PAGE
+======================================== */
+
+.add-found-page {
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+/* ========================================
+   HEADER
+======================================== */
+
+.add-found-header {
+  padding: 60px 25px;
+  background: linear-gradient(135deg, #ecfdf5, #ffffff);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.add-found-header-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.page-label {
+  display: inline-block;
+  margin-bottom: 12px;
+
+  color: #059669;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.add-found-header h1 {
+  margin: 0 0 12px;
+
+  color: #111827;
+  font-size: 42px;
+  line-height: 1.15;
+}
+
+.add-found-header p {
+  margin: 0;
+
+  color: #64748b;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* ========================================
+   MAIN SECTION
+======================================== */
+
+.add-found-section {
+  padding: 60px 25px;
+}
+
+.add-found-container {
+  max-width: 1100px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  gap: 25px;
+}
+
+/* ========================================
+   CARDS
+======================================== */
+
+.found-form-card,
+.found-info-card {
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 15px;
+
+  box-shadow: 0 5px 20px rgba(15, 23, 42, 0.05);
+}
+
+/* ========================================
+   FORM CARD
+======================================== */
+
+.found-form-card {
+  padding: 30px;
+}
+
+.found-form-heading {
+  margin-bottom: 25px;
+}
+
+.found-form-heading h2 {
+  margin: 0 0 8px;
+
+  color: #111827;
+  font-size: 24px;
+}
+
+.found-form-heading p {
+  margin: 0;
+
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* ========================================
+   FORM GROUP
+======================================== */
+
+.found-form-group {
+  margin-bottom: 20px;
+}
+
+.found-form-group label {
+  display: block;
+  margin-bottom: 8px;
+
+  color: #334155;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.found-form-group label span {
+  color: #dc2626;
+}
+
+/* ========================================
+   INPUT / SELECT / TEXTAREA
+======================================== */
+
+.found-form-group input,
+.found-form-group select,
+.found-form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 12px 14px;
+
+  color: #1e293b;
+  background: #ffffff;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+
+  outline: none;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  transition: all 0.2s ease;
+}
+
+.found-form-group input:focus,
+.found-form-group select:focus,
+.found-form-group textarea:focus {
+  border-color: #059669;
+
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.found-form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.found-form-group small {
+  display: block;
+
+  margin-top: 7px;
+
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+/* ========================================
+   FORM ROW
+======================================== */
+
+.found-form-row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 15px;
+}
+
+/* ========================================
+   BUTTONS
+======================================== */
+
+.found-form-buttons {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+
+  margin-top: 25px;
+}
+
+.found-cancel-btn,
+.submit-found-btn {
+  padding: 11px 18px;
+
+  border-radius: 8px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  text-decoration: none;
+
+  transition: all 0.2s ease;
+}
+
+.found-cancel-btn {
+  color: #475569;
+
+  background: #f8fafc;
+
+  border: 1px solid #cbd5e1;
+}
+
+.found-cancel-btn:hover {
+  background: #f1f5f9;
+}
+
+.submit-found-btn {
+  color: #ffffff;
+
+  background: #059669;
+
+  border: 1px solid #059669;
+}
+
+.submit-found-btn:hover {
+  background: #047857;
+
+  border-color: #047857;
+
+  transform: translateY(-1px);
+}
+
+/* ========================================
+   SUCCESS MESSAGE
+======================================== */
+
+.found-success-message {
+  margin-bottom: 20px;
+
+  padding: 13px;
+
+  color: #047857;
+
+  background: #d1fae5;
+
+  border: 1px solid #a7f3d0;
+
+  border-radius: 8px;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ========================================
+   INFO CARD
+======================================== */
+
+.found-info-card {
+  align-self: start;
+
+  padding: 25px;
+}
+
+.found-info-icon {
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 18px;
+
+  background: #ecfdf5;
+
+  border-radius: 10px;
+
+  font-size: 23px;
+}
+
+.found-info-card h3 {
+  margin: 0 0 15px;
+
+  color: #111827;
+
+  font-size: 18px;
+}
+
+.found-info-card ul {
+  margin: 0;
+
+  padding-left: 20px;
+}
+
+.found-info-card li {
+  margin-bottom: 12px;
+
+  color: #64748b;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+/* ========================================
+   INFO DIVIDER
+======================================== */
+
+.found-info-divider {
+  height: 1px;
+
+  margin: 20px 0;
+
+  background: #e5e7eb;
+}
+
+.found-info-card > p {
+  margin: 0 0 10px;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+.view-found-link {
+  color: #059669;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+.view-found-link:hover {
+  text-decoration: underline;
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 800px) {
+  .add-found-container {
+    grid-template-columns: 1fr;
+  }
+
+  .found-form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 500px) {
+  .add-found-header {
+    padding: 45px 20px;
+  }
+
+  .add-found-header h1 {
+    font-size: 32px;
+  }
+
+  .add-found-header p {
+    font-size: 14px;
+  }
+
+  .add-found-section {
+    padding: 35px 20px;
+  }
+
+  .found-form-card,
+  .found-info-card {
+    padding: 20px;
+  }
+
+  .found-form-buttons {
+    flex-direction: column;
+  }
+
+  .found-cancel-btn,
+  .submit-found-btn {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    text-align: center;
+  }
+}
+
+/* ========================================
+   SMALL MOBILE
+======================================== */
+
+@media (max-width: 400px) {
+  .add-found-header h1 {
+    font-size: 29px;
+  }
+
+  .add-found-section {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
