@@ -11,13 +11,15 @@ function Footer() {
         <div className="footer-brand">
 
           <Link to="/" className="footer-logo">
-            🔎 <span>Campus<span>Find</span></span>
+            🔎 <span>ABES<span>EC</span></span>
           </Link>
 
           <p>
-            A campus-based Lost & Found platform that helps
-            students report, search, and recover their
-            lost belongings.
+            The ABES Engineering College Lost & Found Portal is designed to help students,
+faculty members, and staff report and recover lost belongings within the campus.
+
+This portal allows users to report lost or found items, search existing records,
+and connect with the respective owner or finder.
           </p>
 
           <div className="footer-socials">
@@ -72,11 +74,11 @@ function Footer() {
 
           <h3>Contact Us</h3>
 
-          <p>📍 College Campus</p>
+          <p>📍 ABES-EC Campus</p>
 
-          <p>📧 campusfind@example.com</p>
+          <p>📧 registrar@abes.ac.in</p>
 
-          <p>📞 +91 98765 43210</p>
+          <p>📞 +911207135112  ,  +911207135115</p>
 
           <p>🕐 Mon - Fri: 9 AM - 5 PM</p>
 
@@ -90,7 +92,7 @@ function Footer() {
       <div className="footer-bottom">
 
         <p>
-          © {new Date().getFullYear()} CampusFind.
+          © {new Date().getFullYear()} ABES Engineering College.
           All rights reserved.
         </p>
 

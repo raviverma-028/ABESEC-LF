@@ -9,13 +9,13 @@ function Contact() {
       </p>
 
       <h3>Email</h3>
-      <p>campuslostfound@gmail.com</p>
+      <p>registrar@abes.ac.in</p>
 
       <h3>Phone</h3>
-      <p>+91 9876543210</p>
+      <p>+91 01207135112</p>
 
-      <h3>College Campus</h3>
-      <p>College Lost & Found Department</p>
+      <h3>ABES ENGINEERING COLLEGE</h3>
+      <p>ABES-EC Lost & Found Department</p>
     </div>
   );
 }

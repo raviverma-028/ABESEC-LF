@@ -1,8 +1,6 @@
 import { useState } from "react";
-
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/AddLostItem.css";
-import { addLostItem } from "../utils/storage";
 
 function AddLostItem() {
   const navigate = useNavigate();
@@ -10,52 +8,184 @@ function AddLostItem() {
   const [formData, setFormData] = useState({
     itemName: "",
     category: "",
-    location: "",
-    date: "",
     description: "",
-    ownerName: "",
-    contact: "",
+    location: "",
+    dateLost: "",
+    image: "",
+    contactName: "",
+    contactEmail: "",
+    contactPhone: "",
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  // =====================================================
+  // HANDLE INPUT CHANGE
+  // =====================================================
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setFormData((previous) => ({
-      ...previous,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  // =====================================================
+  // HANDLE SUBMIT
+  // =====================================================
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    addLostItem(formData);
+    setLoading(true);
+    setMessage("");
 
-    setSubmitted(true);
+    // ===================================================
+    // GET JWT TOKEN
+    // ===================================================
 
-    setFormData({
-      itemName: "",
-      category: "",
-      location: "",
-      date: "",
-      description: "",
-      ownerName: "",
-      contact: "",
-    });
+    const token = localStorage.getItem("token");
 
-    // 1.5 seconds ke baad Lost Items page par
-    // automatically redirect hoga
-    setTimeout(() => {
-      navigate("/lost-items");
-    }, 1500);
+    // ===================================================
+    // CHECK LOGIN
+    // ===================================================
+
+    if (!token) {
+      setMessage(
+        "❌ Please login first to report a lost item."
+      );
+
+      setLoading(false);
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 1200);
+
+      return;
+    }
+
+    try {
+      // =================================================
+      // SEND DATA TO BACKEND
+      // =================================================
+
+      const response = await fetch(
+        "http://localhost:5000/api/lost",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+
+          body: JSON.stringify(formData),
+        }
+      );
+
+      // =================================================
+      // READ RESPONSE
+      // =================================================
+
+      let data = {};
+
+      try {
+        data = await response.json();
+      } catch {
+        data = {};
+      }
+
+      // =================================================
+      // TOKEN EXPIRED / INVALID
+      // =================================================
+
+      if (response.status === 401) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
+        setMessage(
+          "❌ Your login session has expired. Please login again."
+        );
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 1200);
+
+        return;
+      }
+
+      // =================================================
+      // BACKEND ERROR
+      // =================================================
+
+      if (!response.ok) {
+        throw new Error(
+          data.error ||
+            data.message ||
+            "Failed to report lost item"
+        );
+      }
+
+      // =================================================
+      // SUCCESS
+      // =================================================
+
+      setMessage(
+        "✅ Lost item reported successfully!"
+      );
+
+      // =================================================
+      // RESET FORM
+      // =================================================
+
+      setFormData({
+        itemName: "",
+        category: "",
+        description: "",
+        location: "",
+        dateLost: "",
+        image: "",
+        contactName: "",
+        contactEmail: "",
+        contactPhone: "",
+      });
+
+      // =================================================
+      // REDIRECT AFTER SUCCESS
+      // =================================================
+
+      setTimeout(() => {
+        navigate("/lost-items");
+      }, 1500);
+
+    } catch (error) {
+      console.error(
+        "Add Lost Item Error:",
+        error
+      );
+
+      setMessage(
+        `❌ ${error.message}`
+      );
+
+    } finally {
+      setLoading(false);
+    }
   };
+
+  // =====================================================
+  // PAGE
+  // =====================================================
 
   return (
     <div className="add-lost-page">
 
-      {/* ================= HEADER ================= */}
+      {/* =================================================
+          HEADER
+      ================================================= */}
 
       <section className="add-lost-header">
 
@@ -66,12 +196,12 @@ function AddLostItem() {
           </span>
 
           <h1>
-            Report Your Lost Item
+            Report a Lost Item
           </h1>
 
           <p>
-            Provide some details about your lost item
-            so that other students can help you find it.
+            Lost something on campus? Fill out the form
+            below so others can help you find it.
           </p>
 
         </div>
@@ -79,13 +209,18 @@ function AddLostItem() {
       </section>
 
 
-      {/* ================= MAIN ================= */}
+      {/* =================================================
+          MAIN SECTION
+      ================================================= */}
 
       <section className="add-lost-section">
 
         <div className="add-lost-container">
 
-          {/* ================= FORM ================= */}
+
+          {/* =================================================
+              FORM CARD
+          ================================================= */}
 
           <div className="lost-form-card">
 
@@ -96,26 +231,40 @@ function AddLostItem() {
               </h2>
 
               <p>
-                Fill in the details below as accurately
-                as possible.
+                Please provide accurate information about
+                your lost item.
               </p>
 
             </div>
 
 
-            {/* SUCCESS MESSAGE */}
+            {/* =================================================
+                MESSAGE
+            ================================================= */}
 
-            {submitted && (
-              <div className="lost-success-message">
-                ✅ Lost item reported successfully!
-                Redirecting to Lost Items...
+            {message && (
+              <div
+                className={
+                  message.startsWith("❌")
+                    ? "lost-error-message"
+                    : "lost-success-message"
+                }
+              >
+                {message}
               </div>
             )}
 
 
+            {/* =================================================
+                FORM
+            ================================================= */}
+
             <form onSubmit={handleSubmit}>
 
-              {/* ITEM NAME */}
+
+              {/* =================================================
+                  ITEM NAME
+              ================================================= */}
 
               <div className="lost-form-group">
 
@@ -127,7 +276,7 @@ function AddLostItem() {
                   id="itemName"
                   type="text"
                   name="itemName"
-                  placeholder="Example: Black Backpack"
+                  placeholder="Example: Black Wallet"
                   value={formData.itemName}
                   onChange={handleChange}
                   required
@@ -136,9 +285,14 @@ function AddLostItem() {
               </div>
 
 
-              {/* CATEGORY + LOCATION */}
+              {/* =================================================
+                  CATEGORY + LOCATION
+              ================================================= */}
 
               <div className="lost-form-row">
+
+
+                {/* CATEGORY */}
 
                 <div className="lost-form-group">
 
@@ -195,10 +349,12 @@ function AddLostItem() {
                 </div>
 
 
+                {/* LOCATION */}
+
                 <div className="lost-form-group">
 
                   <label htmlFor="location">
-                    Last Seen Location <span>*</span>
+                    Lost Location <span>*</span>
                   </label>
 
                   <select
@@ -256,19 +412,21 @@ function AddLostItem() {
               </div>
 
 
-              {/* DATE */}
+              {/* =================================================
+                  DATE LOST
+              ================================================= */}
 
               <div className="lost-form-group">
 
-                <label htmlFor="date">
+                <label htmlFor="dateLost">
                   Date Lost <span>*</span>
                 </label>
 
                 <input
-                  id="date"
+                  id="dateLost"
                   type="date"
-                  name="date"
-                  value={formData.date}
+                  name="dateLost"
+                  value={formData.dateLost}
                   onChange={handleChange}
                   required
                 />
@@ -276,7 +434,9 @@ function AddLostItem() {
               </div>
 
 
-              {/* DESCRIPTION */}
+              {/* =================================================
+                  DESCRIPTION
+              ================================================= */}
 
               <div className="lost-form-group">
 
@@ -287,34 +447,63 @@ function AddLostItem() {
                 <textarea
                   id="description"
                   name="description"
-                  placeholder="Describe the item, color, brand, identifying details..."
+                  placeholder="Describe the item, color, brand, model, identifying details..."
                   value={formData.description}
                   onChange={handleChange}
                   required
                 />
 
                 <small>
-                  Don't include passwords or other sensitive
-                  information.
+                  Do not include passwords or other
+                  sensitive information.
                 </small>
 
               </div>
 
 
-              {/* OWNER NAME */}
+              {/* =================================================
+                  IMAGE
+              ================================================= */}
 
               <div className="lost-form-group">
 
-                <label htmlFor="ownerName">
+                <label htmlFor="image">
+                  Image URL
+                </label>
+
+                <input
+                  id="image"
+                  type="url"
+                  name="image"
+                  placeholder="Paste image URL (optional)"
+                  value={formData.image}
+                  onChange={handleChange}
+                />
+
+                <small>
+                  Optional: Add an image URL of your
+                  lost item.
+                </small>
+
+              </div>
+
+
+              {/* =================================================
+                  CONTACT NAME
+              ================================================= */}
+
+              <div className="lost-form-group">
+
+                <label htmlFor="contactName">
                   Your Name <span>*</span>
                 </label>
 
                 <input
-                  id="ownerName"
+                  id="contactName"
                   type="text"
-                  name="ownerName"
+                  name="contactName"
                   placeholder="Enter your name"
-                  value={formData.ownerName}
+                  value={formData.contactName}
                   onChange={handleChange}
                   required
                 />
@@ -322,20 +511,22 @@ function AddLostItem() {
               </div>
 
 
-              {/* CONTACT */}
+              {/* =================================================
+                  EMAIL
+              ================================================= */}
 
               <div className="lost-form-group">
 
-                <label htmlFor="contact">
-                  Contact Information <span>*</span>
+                <label htmlFor="contactEmail">
+                  Email <span>*</span>
                 </label>
 
                 <input
-                  id="contact"
-                  type="text"
-                  name="contact"
-                  placeholder="Phone number or college email"
-                  value={formData.contact}
+                  id="contactEmail"
+                  type="email"
+                  name="contactEmail"
+                  placeholder="Enter your email"
+                  value={formData.contactEmail}
                   onChange={handleChange}
                   required
                 />
@@ -343,7 +534,31 @@ function AddLostItem() {
               </div>
 
 
-              {/* BUTTONS */}
+              {/* =================================================
+                  PHONE
+              ================================================= */}
+
+              <div className="lost-form-group">
+
+                <label htmlFor="contactPhone">
+                  Phone Number
+                </label>
+
+                <input
+                  id="contactPhone"
+                  type="tel"
+                  name="contactPhone"
+                  placeholder="Enter phone number"
+                  value={formData.contactPhone}
+                  onChange={handleChange}
+                />
+
+              </div>
+
+
+              {/* =================================================
+                  BUTTONS
+              ================================================= */}
 
               <div className="lost-form-buttons">
 
@@ -357,8 +572,13 @@ function AddLostItem() {
                 <button
                   type="submit"
                   className="submit-lost-btn"
+                  disabled={loading}
                 >
-                  Report Lost Item
+
+                  {loading
+                    ? "Submitting..."
+                    : "Report Lost Item"}
+
                 </button>
 
               </div>
@@ -368,43 +588,48 @@ function AddLostItem() {
           </div>
 
 
-          {/* ================= INFO CARD ================= */}
+          {/* =================================================
+              INFORMATION CARD
+          ================================================= */}
 
           <aside className="lost-info-card">
 
             <div className="lost-info-icon">
-              🔎
+              🔍
             </div>
 
             <h3>
-              Tips for Finding Your Item
+              Tips for Reporting
             </h3>
 
             <ul>
 
               <li>
-                Give a clear description of the item.
+                Provide a clear item name.
               </li>
 
               <li>
-                Mention the last place where you saw it.
+                Select the exact location where
+                you lost it.
               </li>
 
               <li>
-                Add identifying details such as color
-                or brand.
+                Add identifying details such as
+                color, brand and model.
               </li>
 
               <li>
-                Keep your contact information updated.
+                Provide correct contact information.
               </li>
 
             </ul>
 
+
             <div className="lost-info-divider"></div>
 
+
             <p>
-              Want to check already reported items?
+              Already reported your lost item?
             </p>
 
             <Link

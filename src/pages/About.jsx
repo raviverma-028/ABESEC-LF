@@ -1,10 +1,10 @@
 function About() {
   return (
     <div>
-      <h1>About Campus Lost & Found</h1>
+      <h1>About ABES-EC Lost & Found</h1>
 
       <p>
-        Campus Lost & Found is a platform designed for college students
+        ABES-EC Lost & Found is a platform designed for college students and Faculty
         to report and find lost objects within the college campus.
       </p>
 

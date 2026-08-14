@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/AddFoundItem.css";
-import { addFoundItem } from "../utils/storage";
 
 function AddFoundItem() {
   const navigate = useNavigate();
@@ -9,50 +8,153 @@ function AddFoundItem() {
   const [formData, setFormData] = useState({
     itemName: "",
     category: "",
-    location: "",
-    date: "",
     description: "",
+    location: "",
+    dateFound: "",
+    image: "",
     finderName: "",
-    contact: "",
+    contactEmail: "",
+    contactPhone: "",
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  // =====================================================
+  // HANDLE INPUT CHANGE
+  // =====================================================
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setFormData((previous) => ({
-      ...previous,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  // =====================================================
+  // HANDLE SUBMIT
+  // =====================================================
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    addFoundItem(formData);
+    setMessage("");
 
-    setSubmitted(true);
+    // Get login token
+    const token = localStorage.getItem("token");
 
-    setFormData({
-      itemName: "",
-      category: "",
-      location: "",
-      date: "",
-      description: "",
-      finderName: "",
-      contact: "",
-    });
+    // =====================================================
+    // LOGIN CHECK
+    // =====================================================
 
-    setTimeout(() => {
-      navigate("/found-items");
-    }, 1500);
+    if (!token) {
+      setMessage("❌ Please login first to report a found item.");
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 1200);
+
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/found",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await response.json();
+
+      // =====================================================
+      // BACKEND ERROR
+      // =====================================================
+
+      if (!response.ok) {
+        throw new Error(
+          data.error ||
+            data.message ||
+            "Failed to add found item"
+        );
+      }
+
+      // =====================================================
+      // SUCCESS
+      // =====================================================
+
+      setMessage(
+        "✅ Found item reported successfully!"
+      );
+
+      // Reset form
+      setFormData({
+        itemName: "",
+        category: "",
+        description: "",
+        location: "",
+        dateFound: "",
+        image: "",
+        finderName: "",
+        contactEmail: "",
+        contactPhone: "",
+      });
+
+    } catch (error) {
+      console.error(
+        "Add Found Item Error:",
+        error
+      );
+
+      // JWT expired / invalid
+      if (
+        error.message.toLowerCase().includes("token") ||
+        error.message.toLowerCase().includes("unauthorized")
+      ) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
+        setMessage(
+          "❌ Your login session has expired. Please login again."
+        );
+
+        setTimeout(() => {
+          navigate("/login");
+        }, 1500);
+
+        return;
+      }
+
+      setMessage(
+        "❌ " + error.message
+      );
+
+    } finally {
+      setLoading(false);
+    }
   };
+
+  // =====================================================
+  // PAGE
+  // =====================================================
 
   return (
     <div className="add-found-page">
 
-      {/* ================= HEADER ================= */}
+      {/* =================================================
+          HEADER
+      ================================================= */}
 
       <section className="add-found-header">
 
@@ -67,8 +169,8 @@ function AddFoundItem() {
           </h1>
 
           <p>
-            Found something on campus? Report it here so
-            the rightful owner can find it.
+            Found something on campus? Report it here
+            so the owner can find it.
           </p>
 
         </div>
@@ -76,13 +178,18 @@ function AddFoundItem() {
       </section>
 
 
-      {/* ================= MAIN ================= */}
+      {/* =================================================
+          MAIN SECTION
+      ================================================= */}
 
       <section className="add-found-section">
 
         <div className="add-found-container">
 
-          {/* ================= FORM ================= */}
+
+          {/* =================================================
+              FORM CARD
+          ================================================= */}
 
           <div className="found-form-card">
 
@@ -93,26 +200,32 @@ function AddFoundItem() {
               </h2>
 
               <p>
-                Provide accurate information about the
-                item you found.
+                Please provide accurate information about
+                the item you found.
               </p>
 
             </div>
 
 
-            {/* SUCCESS MESSAGE */}
+            {/* MESSAGE */}
 
-            {submitted && (
+            {message && (
               <div className="found-success-message">
-                ✅ Found item reported successfully!
-                Redirecting to Found Items...
+                {message}
               </div>
             )}
 
 
+            {/* =================================================
+                FORM
+            ================================================= */}
+
             <form onSubmit={handleSubmit}>
 
-              {/* ITEM NAME */}
+
+              {/* =================================================
+                  ITEM NAME
+              ================================================= */}
 
               <div className="found-form-group">
 
@@ -124,7 +237,7 @@ function AddFoundItem() {
                   id="itemName"
                   type="text"
                   name="itemName"
-                  placeholder="Example: Blue Water Bottle"
+                  placeholder="Example: Black Wallet"
                   value={formData.itemName}
                   onChange={handleChange}
                   required
@@ -133,9 +246,14 @@ function AddFoundItem() {
               </div>
 
 
-              {/* CATEGORY + LOCATION */}
+              {/* =================================================
+                  CATEGORY + LOCATION
+              ================================================= */}
 
               <div className="found-form-row">
+
+
+                {/* CATEGORY */}
 
                 <div className="found-form-group">
 
@@ -191,6 +309,8 @@ function AddFoundItem() {
 
                 </div>
 
+
+                {/* LOCATION */}
 
                 <div className="found-form-group">
 
@@ -253,19 +373,21 @@ function AddFoundItem() {
               </div>
 
 
-              {/* DATE */}
+              {/* =================================================
+                  DATE FOUND
+              ================================================= */}
 
               <div className="found-form-group">
 
-                <label htmlFor="date">
+                <label htmlFor="dateFound">
                   Date Found <span>*</span>
                 </label>
 
                 <input
-                  id="date"
+                  id="dateFound"
                   type="date"
-                  name="date"
-                  value={formData.date}
+                  name="dateFound"
+                  value={formData.dateFound}
                   onChange={handleChange}
                   required
                 />
@@ -273,7 +395,9 @@ function AddFoundItem() {
               </div>
 
 
-              {/* DESCRIPTION */}
+              {/* =================================================
+                  DESCRIPTION
+              ================================================= */}
 
               <div className="found-form-group">
 
@@ -284,21 +408,50 @@ function AddFoundItem() {
                 <textarea
                   id="description"
                   name="description"
-                  placeholder="Describe the item, color, brand, identifying details..."
+                  placeholder="Describe the item, color, brand, model, identifying details..."
                   value={formData.description}
                   onChange={handleChange}
                   required
                 />
 
                 <small>
-                  Do not include passwords or other sensitive
-                  information.
+                  Do not include passwords or other
+                  sensitive information.
                 </small>
 
               </div>
 
 
-              {/* FINDER NAME */}
+              {/* =================================================
+                  IMAGE
+              ================================================= */}
+
+              <div className="found-form-group">
+
+                <label htmlFor="image">
+                  Image URL
+                </label>
+
+                <input
+                  id="image"
+                  type="url"
+                  name="image"
+                  placeholder="Paste image URL (optional)"
+                  value={formData.image}
+                  onChange={handleChange}
+                />
+
+                <small>
+                  Optional: Add an image URL of the
+                  found item.
+                </small>
+
+              </div>
+
+
+              {/* =================================================
+                  FINDER NAME
+              ================================================= */}
 
               <div className="found-form-group">
 
@@ -319,20 +472,22 @@ function AddFoundItem() {
               </div>
 
 
-              {/* CONTACT */}
+              {/* =================================================
+                  EMAIL
+              ================================================= */}
 
               <div className="found-form-group">
 
-                <label htmlFor="contact">
-                  Contact Information <span>*</span>
+                <label htmlFor="contactEmail">
+                  Email <span>*</span>
                 </label>
 
                 <input
-                  id="contact"
-                  type="text"
-                  name="contact"
-                  placeholder="Phone number or college email"
-                  value={formData.contact}
+                  id="contactEmail"
+                  type="email"
+                  name="contactEmail"
+                  placeholder="Enter your email"
+                  value={formData.contactEmail}
                   onChange={handleChange}
                   required
                 />
@@ -340,7 +495,31 @@ function AddFoundItem() {
               </div>
 
 
-              {/* BUTTONS */}
+              {/* =================================================
+                  PHONE
+              ================================================= */}
+
+              <div className="found-form-group">
+
+                <label htmlFor="contactPhone">
+                  Phone Number
+                </label>
+
+                <input
+                  id="contactPhone"
+                  type="tel"
+                  name="contactPhone"
+                  placeholder="Enter phone number"
+                  value={formData.contactPhone}
+                  onChange={handleChange}
+                />
+
+              </div>
+
+
+              {/* =================================================
+                  BUTTONS
+              ================================================= */}
 
               <div className="found-form-buttons">
 
@@ -354,8 +533,13 @@ function AddFoundItem() {
                 <button
                   type="submit"
                   className="submit-found-btn"
+                  disabled={loading}
                 >
-                  Report Found Item
+
+                  {loading
+                    ? "Submitting..."
+                    : "Report Found Item"}
+
                 </button>
 
               </div>
@@ -365,42 +549,48 @@ function AddFoundItem() {
           </div>
 
 
-          {/* ================= INFO CARD ================= */}
+          {/* =================================================
+              INFORMATION CARD
+          ================================================= */}
 
           <aside className="found-info-card">
 
             <div className="found-info-icon">
-              🤝
+              🔎
             </div>
 
             <h3>
-              Help Return the Item
+              Tips for Reporting
             </h3>
 
             <ul>
 
               <li>
-                Give an accurate description of the item.
+                Provide a clear item name.
               </li>
 
               <li>
-                Mention exactly where you found it.
+                Select the exact location where
+                you found it.
               </li>
 
               <li>
-                Include useful identifying details.
+                Add identifying details such as
+                color, brand and model.
               </li>
 
               <li>
-                Keep your contact information updated.
+                Provide correct contact information.
               </li>
 
             </ul>
 
+
             <div className="found-info-divider"></div>
 
+
             <p>
-              Want to check already reported items?
+              Want to see reported found items?
             </p>
 
             <Link

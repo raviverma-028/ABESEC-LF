@@ -1,63 +1,58 @@
-/* ========================================
+/* =====================================================
    ADD LOST ITEM PAGE
-======================================== */
+===================================================== */
 
 .add-lost-page {
-  width: 100%;
   min-height: 100vh;
-  background: #f8fafc;
+  background: #f5f7fb;
+  color: #1f2937;
 }
 
-/* ========================================
+/* =====================================================
    HEADER
-======================================== */
+===================================================== */
 
 .add-lost-header {
-  background: linear-gradient(135deg, #eff6ff, #ffffff);
-  padding: 65px 25px;
-  border-bottom: 1px solid #e5e7eb;
+  background: linear-gradient(135deg, #111827, #1f2937);
+  color: white;
+  padding: 70px 20px;
 }
 
 .add-lost-header-container {
   max-width: 1100px;
   margin: 0 auto;
-  text-align: center;
 }
 
 .page-label {
   display: inline-block;
-  margin-bottom: 12px;
-
-  color: #2563eb;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 2px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #60a5fa;
+  margin-bottom: 14px;
 }
 
 .add-lost-header h1 {
-  margin: 0 0 15px;
-
-  color: #111827;
-  font-size: clamp(32px, 5vw, 52px);
+  margin: 0;
+  font-size: 44px;
   line-height: 1.15;
   font-weight: 800;
 }
 
 .add-lost-header p {
-  max-width: 600px;
-  margin: 0 auto;
-
-  color: #64748b;
+  max-width: 680px;
+  margin: 18px 0 0;
+  color: #d1d5db;
   font-size: 17px;
   line-height: 1.7;
 }
 
-/* ========================================
+/* =====================================================
    MAIN SECTION
-======================================== */
+===================================================== */
 
 .add-lost-section {
-  padding: 70px 25px;
+  padding: 55px 20px 80px;
 }
 
 .add-lost-container {
@@ -65,504 +60,80 @@
   margin: 0 auto;
 
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  grid-template-columns: minmax(0, 1fr) 320px;
   gap: 30px;
 
   align-items: start;
 }
 
-/* ========================================
+/* =====================================================
    FORM CARD
-======================================== */
-
-.form-card {
-  background: #ffffff;
-
-  padding: 40px;
-
-  border: 1px solid #e5e7eb;
-  border-radius: 18px;
-
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
-}
-
-.form-heading {
-  margin-bottom: 30px;
-
-  padding-bottom: 22px;
-
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.form-heading h2 {
-  margin: 0 0 8px;
-
-  color: #111827;
-  font-size: 26px;
-}
-
-.form-heading p {
-  margin: 0;
-
-  color: #64748b;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-/* ========================================
-   SUCCESS MESSAGE
-======================================== */
-
-.success-message {
-  margin-bottom: 25px;
-
-  padding: 14px 16px;
-
-  color: #047857;
-  background: #ecfdf5;
-
-  border: 1px solid #a7f3d0;
-  border-radius: 10px;
-
-  font-size: 14px;
-  font-weight: 600;
-}
-
-/* ========================================
-   FORM
-======================================== */
-
-form {
-  width: 100%;
-}
-
-.form-group {
-  margin-bottom: 22px;
-}
-
-.form-group label {
-  display: block;
-
-  margin-bottom: 8px;
-
-  color: #1e293b;
-
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.form-group label span {
-  color: #dc2626;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-
-  box-sizing: border-box;
-
-  padding: 13px 14px;
-
-  color: #1e293b;
-  background: #ffffff;
-
-  border: 1px solid #cbd5e1;
-  border-radius: 9px;
-
-  outline: none;
-
-  font-family: inherit;
-  font-size: 14px;
-
-  transition: all 0.2s ease;
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: #94a3b8;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-  border-color: #2563eb;
-
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-.form-group textarea {
-  min-height: 130px;
-
-  resize: vertical;
-}
-
-.form-group small {
-  display: block;
-
-  margin-top: 7px;
-
-  color: #94a3b8;
-
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-/* ========================================
-   FORM ROW
-======================================== */
-
-.form-row {
-  display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  gap: 18px;
-}
-
-/* ========================================
-   FORM BUTTONS
-======================================== */
-
-.form-buttons {
-  display: flex;
-
-  justify-content: flex-end;
-  align-items: center;
-
-  gap: 12px;
-
-  margin-top: 30px;
-
-  padding-top: 25px;
-
-  border-top: 1px solid #e5e7eb;
-}
-
-.cancel-btn,
-.submit-lost-btn {
-  min-height: 46px;
-
-  padding: 12px 20px;
-
-  border-radius: 9px;
-
-  font-size: 14px;
-  font-weight: 700;
-
-  cursor: pointer;
-
-  transition: all 0.3s ease;
-}
-
-.cancel-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #475569;
-
-  background: #ffffff;
-
-  border: 1px solid #cbd5e1;
-
-  text-decoration: none;
-}
-
-.cancel-btn:hover {
-  background: #f8fafc;
-  border-color: #94a3b8;
-}
-
-.submit-lost-btn {
-  color: #ffffff;
-
-  background: #2563eb;
-
-  border: 1px solid #2563eb;
-}
-
-.submit-lost-btn:hover {
-  background: #1d4ed8;
-
-  border-color: #1d4ed8;
-
-  transform: translateY(-2px);
-
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
-}
-
-/* ========================================
-   INFORMATION CARD
-======================================== */
-
-.lost-info-card {
-  position: sticky;
-  top: 90px;
-
-  padding: 30px;
-
-  background: #eff6ff;
-
-  border: 1px solid #dbeafe;
-  border-radius: 18px;
-}
-
-.info-icon {
-  width: 55px;
-  height: 55px;
-
-  margin-bottom: 18px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #dbeafe;
-
-  border-radius: 50%;
-
-  font-size: 25px;
-}
-
-.lost-info-card h3 {
-  margin: 0 0 18px;
-
-  color: #1e3a8a;
-
-  font-size: 20px;
-}
-
-.lost-info-card ul {
-  margin: 0;
-  padding-left: 20px;
-}
-
-.lost-info-card li {
-  margin-bottom: 14px;
-
-  color: #475569;
-
-  font-size: 14px;
-
-  line-height: 1.6;
-}
-
-.info-divider {
-  height: 1px;
-
-  margin: 25px 0;
-
-  background: #bfdbfe;
-}
-
-.lost-info-card > p {
-  margin: 0 0 10px;
-
-  color: #64748b;
-
-  font-size: 14px;
-}
-
-.view-lost-link {
-  color: #2563eb;
-
-  font-size: 14px;
-  font-weight: 700;
-
-  text-decoration: none;
-}
-
-.view-lost-link:hover {
-  text-decoration: underline;
-}
-
-/* ========================================
-   TABLET
-======================================== */
-
-@media (max-width: 900px) {
-
-  .add-lost-container {
-    grid-template-columns: 1fr;
-  }
-
-  .lost-info-card {
-    position: static;
-  }
-
-}
-
-/* ========================================
-   MOBILE
-======================================== */
-
-@media (max-width: 600px) {
-
-  .add-lost-header {
-    padding: 50px 18px;
-  }
-
-  .add-lost-header h1 {
-    font-size: 34px;
-  }
-
-  .add-lost-header p {
-    font-size: 15px;
-  }
-
-  .add-lost-section {
-    padding: 40px 15px;
-  }
-
-  .form-card {
-    padding: 25px 18px;
-
-    border-radius: 14px;
-  }
-
-  .form-heading h2 {
-    font-size: 22px;
-  }
-
-  .form-row {
-    grid-template-columns: 1fr;
-
-    gap: 0;
-  }
-
-  .form-buttons {
-    flex-direction: column-reverse;
-
-    align-items: stretch;
-  }
-
-  .cancel-btn,
-  .submit-lost-btn {
-    width: 100%;
-
-    box-sizing: border-box;
-
-    text-align: center;
-  }
-
-  .lost-info-card {
-    padding: 25px 20px;
-  }
-
-}
-
-/* ========================================
-   SMALL MOBILE
-======================================== */
-
-@media (max-width: 400px) {
-
-  .add-lost-header h1 {
-    font-size: 30px;
-  }
-
-  .form-card {
-    padding: 22px 15px;
-  }
-
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    font-size: 13px;
-  }
-
-}
-
-.add-lost-page {
-  min-height: 100vh;
-  background: #f8fafc;
-}
-
-.add-lost-header {
-  padding: 60px 25px;
-  background: linear-gradient(135deg, #eff6ff, #ffffff);
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.add-lost-header-container {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.page-label {
-  display: inline-block;
-  margin-bottom: 12px;
-  color: #2563eb;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 2px;
-}
-
-.add-lost-header h1 {
-  margin: 0 0 12px;
-  color: #111827;
-  font-size: 42px;
-}
-
-.add-lost-header p {
-  margin: 0;
-  color: #64748b;
-  font-size: 16px;
-  line-height: 1.7;
-}
-
-.add-lost-section {
-  padding: 60px 25px;
-}
-
-.add-lost-container {
-  max-width: 1100px;
-  margin: 0 auto;
-
-  display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
-  gap: 25px;
-}
-
-.lost-form-card,
-.lost-info-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(15, 23, 42, 0.05);
-}
+===================================================== */
 
 .lost-form-card {
-  padding: 30px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 35px;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.07);
 }
 
 .lost-form-heading {
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 .lost-form-heading h2 {
   margin: 0 0 8px;
+  font-size: 27px;
   color: #111827;
-  font-size: 24px;
 }
 
 .lost-form-heading p {
   margin: 0;
-  color: #64748b;
-  font-size: 14px;
+  color: #6b7280;
+  font-size: 15px;
+  line-height: 1.6;
 }
 
+/* =====================================================
+   SUCCESS / ERROR MESSAGE
+===================================================== */
+
+.lost-success-message {
+  padding: 14px 16px;
+  margin-bottom: 24px;
+
+  border-radius: 10px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+
+  color: #1d4ed8;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* =====================================================
+   FORM
+===================================================== */
+
 .lost-form-group {
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+}
+
+.lost-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
 }
 
 .lost-form-group label {
   display: block;
   margin-bottom: 8px;
-  color: #334155;
-  font-size: 13px;
+
+  font-size: 14px;
   font-weight: 700;
+  color: #374151;
 }
 
 .lost-form-group label span {
@@ -575,114 +146,167 @@ form {
   width: 100%;
   box-sizing: border-box;
 
-  padding: 12px 14px;
+  padding: 13px 14px;
 
-  color: #1e293b;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+
   background: #ffffff;
+  color: #111827;
 
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
+  font-family: inherit;
+  font-size: 15px;
 
   outline: none;
 
-  font-family: inherit;
-  font-size: 14px;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.lost-form-group input,
+.lost-form-group select {
+  height: 48px;
+}
+
+.lost-form-group textarea {
+  min-height: 125px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.lost-form-group input::placeholder,
+.lost-form-group textarea::placeholder {
+  color: #9ca3af;
 }
 
 .lost-form-group input:focus,
 .lost-form-group select:focus,
 .lost-form-group textarea:focus {
   border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
 
-.lost-form-group textarea {
-  min-height: 120px;
-  resize: vertical;
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 
 .lost-form-group small {
   display: block;
   margin-top: 7px;
-  color: #94a3b8;
-  font-size: 11px;
+
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
-.lost-form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-}
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 .lost-form-buttons {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 12px;
-  margin-top: 25px;
+
+  margin-top: 30px;
+  padding-top: 25px;
+
+  border-top: 1px solid #e5e7eb;
 }
 
 .lost-cancel-btn,
 .submit-lost-btn {
-  padding: 11px 18px;
-  border-radius: 8px;
-  font-size: 13px;
+  min-height: 46px;
+  padding: 0 22px;
+
+  border-radius: 9px;
+
+  font-family: inherit;
+  font-size: 14px;
   font-weight: 700;
+
   cursor: pointer;
   text-decoration: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .lost-cancel-btn {
-  color: #475569;
-  background: #f8fafc;
-  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #374151;
+
+  border: 1px solid #d1d5db;
+}
+
+.lost-cancel-btn:hover {
+  background: #f3f4f6;
 }
 
 .submit-lost-btn {
-  color: #ffffff;
+  border: none;
+
   background: #2563eb;
-  border: 1px solid #2563eb;
+  color: white;
+
+  box-shadow: 0 5px 15px rgba(37, 99, 235, 0.22);
 }
 
-.submit-lost-btn:hover {
+.submit-lost-btn:hover:not(:disabled) {
   background: #1d4ed8;
+  transform: translateY(-1px);
 }
 
-.lost-success-message {
-  margin-bottom: 20px;
-  padding: 13px;
-  color: #047857;
-  background: #d1fae5;
-  border: 1px solid #a7f3d0;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
+.submit-lost-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }
+
+/* =====================================================
+   INFORMATION CARD
+===================================================== */
 
 .lost-info-card {
-  align-self: start;
-  padding: 25px;
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+
+  padding: 30px;
+
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.06);
+
+  position: sticky;
+  top: 25px;
 }
 
 .lost-info-icon {
-  width: 50px;
-  height: 50px;
+  width: 52px;
+  height: 52px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  margin-bottom: 18px;
-
   background: #eff6ff;
-  border-radius: 10px;
+  border-radius: 12px;
 
-  font-size: 23px;
+  font-size: 25px;
+
+  margin-bottom: 20px;
 }
 
 .lost-info-card h3 {
-  margin: 0 0 15px;
+  margin: 0 0 18px;
+
+  font-size: 21px;
   color: #111827;
-  font-size: 18px;
 }
 
 .lost-info-card ul {
@@ -691,28 +315,36 @@ form {
 }
 
 .lost-info-card li {
-  margin-bottom: 12px;
-  color: #64748b;
-  font-size: 13px;
+  margin-bottom: 13px;
+
+  color: #4b5563;
+
+  font-size: 14px;
   line-height: 1.6;
 }
 
 .lost-info-divider {
   height: 1px;
-  margin: 20px 0;
+
   background: #e5e7eb;
+
+  margin: 25px 0;
 }
 
-.lost-info-card > p {
-  margin: 0 0 10px;
-  color: #64748b;
-  font-size: 13px;
+.lost-info-card p {
+  margin: 0 0 12px;
+
+  color: #6b7280;
+
+  font-size: 14px;
 }
 
 .view-lost-link {
   color: #2563eb;
-  font-size: 13px;
+
+  font-size: 14px;
   font-weight: 700;
+
   text-decoration: none;
 }
 
@@ -720,42 +352,88 @@ form {
   text-decoration: underline;
 }
 
-@media (max-width: 800px) {
+/* =====================================================
+   RESPONSIVE - TABLET
+===================================================== */
+
+@media (max-width: 900px) {
   .add-lost-container {
     grid-template-columns: 1fr;
   }
 
-  .lost-form-row {
-    grid-template-columns: 1fr;
+  .lost-info-card {
+    position: static;
+  }
+
+  .add-lost-header h1 {
+    font-size: 38px;
   }
 }
 
-@media (max-width: 500px) {
+/* =====================================================
+   RESPONSIVE - MOBILE
+===================================================== */
+
+@media (max-width: 650px) {
   .add-lost-header {
-    padding: 45px 20px;
+    padding: 50px 18px;
   }
 
   .add-lost-header h1 {
     font-size: 32px;
   }
 
-  .add-lost-section {
-    padding: 35px 20px;
+  .add-lost-header p {
+    font-size: 15px;
   }
 
-  .lost-form-card,
-  .lost-info-card {
-    padding: 20px;
+  .add-lost-section {
+    padding: 30px 14px 50px;
+  }
+
+  .lost-form-card {
+    padding: 22px 18px;
+    border-radius: 14px;
+  }
+
+  .lost-form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .lost-form-heading h2 {
+    font-size: 23px;
   }
 
   .lost-form-buttons {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   .lost-cancel-btn,
   .submit-lost-btn {
     width: 100%;
-    box-sizing: border-box;
-    text-align: center;
+  }
+
+  .lost-info-card {
+    padding: 22px;
+  }
+}
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 400px) {
+  .add-lost-header h1 {
+    font-size: 28px;
+  }
+
+  .lost-form-card {
+    padding: 18px 14px;
+  }
+
+  .lost-form-group input,
+  .lost-form-group select {
+    height: 46px;
   }
 }
